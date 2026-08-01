@@ -13,5 +13,11 @@ import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotat
         .andExpect(jsonPath("$.data.valid").value(false))
         .andExpect(jsonPath("$.data.riskScore").value(55))
         .andExpect(jsonPath("$.data.errors[0]").value("外部写操作必须配置人工审批节点"));}
+    @Test void operatorCanAnalyzeWorkflowImpact()throws Exception{mvc.perform(post("/api/shopfloor/workflow-impact").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"workflowName\":\"客户回访流程\",\"baselineDailyRuns\":100,\"expectedDailyRuns\":180,\"averageTokens\":1200,\"retryRate\":0.2,\"straightThroughRate\":0.7,\"reviewMinutes\":10,\"availableReviewHours\":6}"))
+        .andExpect(status().isOk()).andExpect(jsonPath("$.data.readiness").value("BLOCKED"))
+        .andExpect(jsonPath("$.data.capacityDeltaPercent").value(80))
+        .andExpect(jsonPath("$.data.projectedDailyTokens").value(259200))
+        .andExpect(jsonPath("$.data.requiredReviewHours").value(9.0))
+        .andExpect(jsonPath("$.data.risks.length()").value(3));}
     @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(get("/api/admin/dashboard")).andExpect(status().isForbidden());}
 }

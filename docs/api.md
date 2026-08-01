@@ -11,3 +11,4 @@
 | POST | `/api/shopfloor/work-orders/{id}/reports` | 提交人工节点结果 |
 | POST | `/api/shopfloor/ai-preview` | 调用可替换 AI Provider 生成执行计划 |
 | POST | `/api/shopfloor/workflow-validation` | 发布前校验工具登记、外部写操作和审批节点 |
+| POST | `/api/shopfloor/workflow-impact` | 评估版本发布后的吞吐、令牌消耗与人工复核负荷 |
