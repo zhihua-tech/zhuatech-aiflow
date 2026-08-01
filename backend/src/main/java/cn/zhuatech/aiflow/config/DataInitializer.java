@@ -1,0 +1,11 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.aiflow.config;
+import cn.zhuatech.aiflow.model.*; import cn.zhuatech.aiflow.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+@Configuration public class DataInitializer {
+ @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
+  OperatingUnit sc=units.save(new OperatingUnit("AG-SC","供应链自动化空间","供应链中心",400)),legal=units.save(new OperatingUnit("AG-LEGAL","法务自动化空间","法务部",200)),buy=units.save(new OperatingUnit("AG-BUY","采购自动化空间","采购中心",100));
+  WorkRecord a=records.save(new WorkRecord("RUN-260801-10382","AGENT-ORDER-OPS","订单异常分析与协同处置",sc,12,8,1,LocalDate.now(),WorkRecord.Status.RUNNING,"FLOW-V8")); WorkRecord b=records.save(new WorkRecord("RUN-260801-10376","AGENT-CONTRACT","合同条款审阅与风险摘要",legal,9,9,0,LocalDate.now(),WorkRecord.Status.COMPLETED,"FLOW-V5")); WorkRecord c=records.save(new WorkRecord("RUN-260801-10364","AGENT-PROCURE","采购价格异常核查",buy,16,11,3,LocalDate.now(),WorkRecord.Status.RELEASED,"FLOW-V6"));
+  resources.saveAll(List.of(new ResourceRegister("AGENT-ORDER-02","订单运营智能体",sc,ResourceRegister.Status.RUNNING,96),new ResourceRegister("AGENT-LEGAL-01","合同审阅智能体",legal,ResourceRegister.Status.RUNNING,94),new ResourceRegister("AGENT-BUY-03","采购分析智能体",buy,ResourceRegister.Status.ALARM,71)));
+  reviews.saveAll(List.of(new ReviewRecord("EVAL-AG-260801",a,"工具正确性",120,3,ReviewRecord.Result.PENDING,"程澄"),new ReviewRecord("EVAL-AG-260728",b,"召回完整性",80,1,ReviewRecord.Result.PASSED,"沈屿"),new ReviewRecord("EVAL-AG-260726",c,"权限边界",60,2,ReviewRecord.Result.FAILED,"程澄")));
+  String demo=encoder.encode("Demo@2026"); users.saveAll(List.of(new UserAccount("operator",demo,"沈屿",UserAccount.Role.DOMAIN_USER,"AG-SC"),new UserAccount("planner",demo,"程澄",UserAccount.Role.DOMAIN_OPERATOR,null),new UserAccount("quality",demo,"顾清",UserAccount.Role.QUALITY,null),new UserAccount("admin",encoder.encode("ZhuaTech@2026"),"系统管理员",UserAccount.Role.ADMIN,null)));};}
+}
