@@ -56,3 +56,7 @@ cd frontend && npm install && npm run dev:demo
 | ![微信技术咨询](docs/images/zhuatech-wechat-consulting.png) | ![微信商务咨询](docs/images/zhuatech-wechat-consulting-2.png) |
 
 SEO：AI Agent 平台、智能体编排、Agent 工作流、企业 AI 自动化、Java AI Agent、Vue 智能体平台、知华科技。
+
+## Agent 工作流韧性
+
+新增 `POST /api/aiflow/insights/workflow-resilience`，检查降级路径、幂等重试、熔断、回滚和破坏性操作确认，输出 `RESILIENT`、`IMPROVE` 或 `BLOCK`。
