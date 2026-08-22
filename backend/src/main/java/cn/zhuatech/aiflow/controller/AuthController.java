@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.aiflow.controller;
 import cn.zhuatech.aiflow.common.ApiResponse; import cn.zhuatech.aiflow.dto.AuthDto.*; import cn.zhuatech.aiflow.repository.UserRepository; import cn.zhuatech.aiflow.security.JwtService; import cn.zhuatech.aiflow.service.CurrentUserService; import jakarta.validation.Valid; import org.springframework.security.authentication.*; import org.springframework.web.bind.annotation.*;
 @RestController @RequestMapping("/api/auth") public class AuthController {
