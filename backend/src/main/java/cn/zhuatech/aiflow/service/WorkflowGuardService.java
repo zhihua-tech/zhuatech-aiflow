@@ -9,13 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/** 发布工作流前检查节点完整性、工具登记和高风险动作审批。 */
+/**
+ * 发布工作流前检查节点完整性、工具登记和高风险动作审批。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class WorkflowGuardService {
     private static final Set<String> REGISTERED_TOOLS = Set.of(
         "knowledge.search", "crm.read", "ticket.create", "message.send", "report.generate"
     );
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ValidationResult validate(ValidationRequest request) {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
@@ -36,6 +43,9 @@ public class WorkflowGuardService {
         return new ValidationResult(errors.isEmpty(), riskScore, List.copyOf(errors), List.copyOf(warnings), uniqueSteps.size(), request.tools().size());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ValidationRequest(
         @NotBlank(message = "请输入工作流名称") String name,
         @NotEmpty(message = "请至少配置一个步骤") List<String> steps,
@@ -44,6 +54,9 @@ public class WorkflowGuardService {
         boolean approvalConfigured
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ValidationResult(
         boolean valid,
         int riskScore,

@@ -1,7 +1,13 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.aiflow.config;
 import cn.zhuatech.aiflow.model.*; import cn.zhuatech.aiflow.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder; import java.time.LocalDate; import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Configuration public class DataInitializer {
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
  @Bean CommandLineRunner seed(OperatingUnitRepository units,WorkRecordRepository records,ResourceRegisterRepository resources,ReviewRecordRepository reviews,UserRepository users,PasswordEncoder encoder){return args->{if(units.count()>0)return;
   OperatingUnit sc=units.save(new OperatingUnit("AG-SC","供应链自动化空间","供应链中心",400)),legal=units.save(new OperatingUnit("AG-LEGAL","法务自动化空间","法务部",200)),buy=units.save(new OperatingUnit("AG-BUY","采购自动化空间","采购中心",100));
   WorkRecord a=records.save(new WorkRecord("RUN-260801-10382","AGENT-ORDER-OPS","订单异常分析与协同处置",sc,12,8,1,LocalDate.now(),WorkRecord.Status.RUNNING,"FLOW-V8")); WorkRecord b=records.save(new WorkRecord("RUN-260801-10376","AGENT-CONTRACT","合同条款审阅与风险摘要",legal,9,9,0,LocalDate.now(),WorkRecord.Status.COMPLETED,"FLOW-V5")); WorkRecord c=records.save(new WorkRecord("RUN-260801-10364","AGENT-PROCURE","采购价格异常核查",buy,16,11,3,LocalDate.now(),WorkRecord.Status.RELEASED,"FLOW-V6"));

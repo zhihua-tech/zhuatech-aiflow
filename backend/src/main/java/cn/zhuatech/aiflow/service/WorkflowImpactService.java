@@ -11,9 +11,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 在工作流版本发布前估算吞吐、令牌消耗和人工复核负荷。 */
+/**
+ * 在工作流版本发布前估算吞吐、令牌消耗和人工复核负荷。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class WorkflowImpactService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ImpactResult analyze(ImpactRequest request) {
         int capacityDelta = (int) Math.round((request.expectedDailyRuns() - request.baselineDailyRuns()) * 100.0 / request.baselineDailyRuns());
         long projectedTokens = Math.round(request.expectedDailyRuns() * request.averageTokens() * (1 + request.retryRate()));
@@ -28,6 +35,9 @@ public class WorkflowImpactService {
             Math.max(0, Math.round((request.availableReviewHours() - reviewHours) * 10.0) / 10.0), List.copyOf(risks));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ImpactRequest(
         @NotBlank(message = "请输入工作流名称") String workflowName,
         @Positive int baselineDailyRuns,
@@ -39,6 +49,9 @@ public class WorkflowImpactService {
         @PositiveOrZero double availableReviewHours
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ImpactResult(
         String readiness,
         int capacityDeltaPercent,
