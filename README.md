@@ -1,5 +1,7 @@
 # ZhuaTech AIFlow｜企业 AI 智能体编排与工作流平台
 
+[简体中文](README.md) | [English](README.en.md)
+
 ZhuaTech AIFlow 是知华科技（上海如静知华信息科技有限公司）面向企业自动化场景发布的社区源码版。[访问知华科技官网](https://www.zhuatech.cn/)
 
 ## 产品概览
