@@ -1,5 +1,7 @@
 # ZhuaTech AIFlow｜企业 AI 智能体编排与工作流平台
 
+2026-10-23 功能更新：**工作流退避重试与时间预算**。根据已发生失败、最大重试次数、指数退避和总时间预算计算后续重试时间；区分不可重试错误及预算耗尽。只计算计划，不创建后台任务。 [接口、操作与边界说明](docs/AI_PRACTICAL_UPGRADE_20261023.md)。
+
 [简体中文](README.md) | [English](README.en.md)
 
 ZhuaTech AIFlow 是知华科技（上海如静知华信息科技有限公司）面向企业自动化场景发布的社区源码版。[访问知华科技官网](https://www.zhuatech.cn/)
