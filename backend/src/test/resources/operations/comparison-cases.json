@@ -1,0 +1,90 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  },
+  {
+    "patch": {
+      "idempotent": "NO"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  },
+  {
+    "patch": {
+      "attemptBudget": "25"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  },
+  {
+    "patch": {
+      "inflight": "11"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "launchNow": "#0"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  },
+  {
+    "patch": {
+      "slots": "28"
+    },
+    "expected": {
+      "decision": "PASS",
+      "queuedAfterLaunch": "#0"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  },
+  {
+    "patch": {
+      "sideEffect": "NO",
+      "idempotent": "NO",
+      "slots": "28"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "launchNow": "#5",
+      "maximumNewAttempts": "#26"
+    }
+  }
+]

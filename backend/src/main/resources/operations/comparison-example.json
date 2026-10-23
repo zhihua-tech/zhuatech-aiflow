@@ -1,0 +1,6 @@
+{
+  "patch": {
+    "idempotent": "NO"
+  },
+  "description": "具备幂等键改为NO"
+}
